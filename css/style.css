@@ -1089,3 +1089,8 @@ section {
 .contaPruAcc {
   background-color: #009970;
 }
+
+.containerHero {
+  position: relative;
+  text-align: center;
+}

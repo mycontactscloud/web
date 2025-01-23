@@ -1096,8 +1096,9 @@ section {
 }
 
 .responsive-image {
-  max-width: 100%; /* Se adapta al ancho del contenedor en dispositivos pequeños */
-  height: auto; /* Mantiene la proporción original */
+  max-width: 540px; /* La imagen no excede su tamaño natural */
+  width: 100%; /* Responsiva para pantallas más pequeñas */
+  height: auto; /* Mantiene la proporción */
   display: block;
-  margin: 20px auto;
+  margin: 20px auto; /* Centra la imagen y añade margen vertical */
 }

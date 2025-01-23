@@ -1095,6 +1095,12 @@ section {
   text-align: center;
 }
 
+
+.contenedorImagenContactManager {
+  max-width: 540px; /* Asegura que el contenedor no sea más grande que la imagen */
+  margin: 0 auto; /* Centra el contenedor */  
+}
+
 .responsive-image {
   max-width: 540px; /* La imagen no excede su tamaño natural */
   width: 100%; /* Responsiva para pantallas más pequeñas */

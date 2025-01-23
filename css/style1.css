@@ -1094,3 +1094,13 @@ section {
   position: relative;
   text-align: center;
 }
+
+.responsive-image {
+  max-width: 80%; /* Limita el ancho de la imagen al 80% del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  display: block; /* Asegura que se trate como un bloque */
+  margin: 20px auto; /* Centra la imagen y agrega un margen superior e inferior */
+  border: 2px solid #ddd; /* Añade un borde suave para un toque estético */
+  border-radius: 8px; /* Bordes redondeados para suavizar el diseño */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra ligera para darle profundidad */  
+}

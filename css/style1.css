@@ -1096,15 +1096,8 @@ section {
 }
 
 .responsive-image {
-  width: 540px; /* Tamaño original de la imagen */
-  height: 430px; /* Tamaño original de la imagen */
-  display: block; /* Asegura que sea un elemento de bloque */
-  margin: 20px auto; /* Centra la imagen horizontalmente y añade margen vertical */
-}
-
-@media screen and (max-width: 540px) {
-  .responsive-image {
-    width: 100%; /* Adapta el ancho al 100% del contenedor en pantallas pequeñas */
-    height: auto; /* Mantiene la proporción de la imagen */
-  }
+  max-width: 100%; /* Se adapta al ancho del contenedor en dispositivos pequeños */
+  height: auto; /* Mantiene la proporción original */
+  display: block;
+  margin: 20px auto;
 }

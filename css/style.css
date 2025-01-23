@@ -388,7 +388,7 @@ h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("https://cdn.jsdelivr.net/gh/mycontactscloud/web/img/hero-bg.webp") center center;
+  background: url("https://cdn.jsdelivr.net/gh/mycontactscloud/web/img/apple.webp") center center;
   background-size: cover;
   position: relative;
 }
@@ -620,7 +620,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)), url("https://cdn.jsdelivr.net/gh/mycontactscloud/web/img/cta-bg.webp") fixed center center;
+  background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)), url("https://cdn.jsdelivr.net/gh/mycontactscloud/web/img/contact-us.webp") fixed center center;
   background-size: cover;
   padding: 60px 0;
 }

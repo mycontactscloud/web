@@ -802,7 +802,7 @@ document.getElementById("fSuscripcion").onsubmit = async (e) => {
 }
 
 
-document.getElementById("modalConfigCookies").addEventListener  ('show.bs.modal', function (e) {
+modalConfigCookies.addEventListener  ('show.bs.modal', function (e) {
     var n = localStorage.getItem("cookiesNecesariasWebMyContacts") || 1;
     var f = localStorage.getItem("cookiesFuncionalesWebMyContacts") || 0;
     necesarias.value  = n;

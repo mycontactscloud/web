@@ -681,3 +681,135 @@ function nuevoEnlaceIos(s) {
     }
     document.getElementById('enlaceIos').href = enlace;
 }
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  	const pageIdentifier = document.body.dataset.page; // Identificador único de la página
+  	if (pageIdentifier === "index") {
+	    msgEnviadoNewsletter.style.display = 'none';
+
+	    var idIdioma = localStorage.getItem('idiomaPais');
+	    if ((idIdioma == null) || (idIdioma == '')) {
+	      getCountryCodeAndLanguage().then(code => {
+	          idIdioma = seleccionarIdioma(code);
+	          localStorage.setItem('idiomaPais', idIdioma);
+	          cambiarTextoIdioma(idIdioma);
+	      });     
+	    } else {
+	      idIdioma = seleccionarIdioma(idIdioma);
+	      cambiarTextoIdioma(idIdioma);
+	    }
+
+	    if (!localStorage.getItem("cookiesNecesariasWebMyContacts")) {
+	      let myModal = new bootstrap.Modal(modalConfigCookies);
+	      myModal.show();
+	    }    
+  	} else if (pageIdentifier === "about") {
+    	console.log("Código específico para about.html");
+  	}
+});
+
+
+function fijId(s) {
+	let r = seleccionarIdioma(s);
+	localStorage.setItem('idiomaPais', r);
+	location.reload();
+} 
+
+
+function getCountryCodeAndLanguage() {
+    return fetch('https://ipapi.co/json/')
+  	.then(response => response.json())
+  	.then(data => {
+    	if (data && data.country_code) {
+      		return `${navigator.language.substring(0, 2)}-${data.country_code}`;
+    	} else {
+      		return navigator.language || navigator.userLanguage;
+    	}
+  	})
+  	.catch(error => {
+    	//console.error('Error:', error);
+    	return navigator.language || navigator.userLanguage;
+  	});
+}
+
+
+
+document.getElementById("fContacto").onsubmit = async (e) => {
+    e.preventDefault();
+    if (!aceptarPolitica1.checked) {
+      	alert(fPolPriv());
+      	return false;
+    }
+    async function datosDevueltos() {
+      	let formData = new FormData(fContacto);
+      	const response = await fetch('https://' + window.location.host + '/formContacto', {
+        	method: 'POST',
+        	body:   formData
+      	});
+      	const data = await response.json();
+      	return data;
+    }
+    datosDevueltos().then((data) => {
+      	if (data.success) {
+        	msgEnviado.classList.add('d-block');
+        	fContacto.reset();
+      	} else {
+        	alert(data.message);
+      	}
+    }).catch(error => {
+      	alert(error.message);
+    })  
+}
+
+
+
+document.getElementById("fSuscripcion").onsubmit = async (e) => {
+    e.preventDefault();
+    if (!aceptarPolitica2.checked) {
+      	alert(fPolPriv());
+     	 return false;
+    }
+    async function datosDevueltos1() {
+      	let formData1 = new FormData(fSuscripcion);
+      	const response1 = await fetch('https://' + window.location.host + '/suscripcionnewsletter', {
+        	method: 'POST',
+        	body:   formData1
+      	});
+      	const data1 = await response1.json();
+      	return data1;
+    }
+    datosDevueltos1().then((data1) => {
+      	if (data1.success) {
+        	msgEnviadoNewsletter.style.display = 'block';
+        	fSuscripcion.reset();
+        	aceptarPolitica2.checked = false;
+      	} else {
+        	alert(data1.message);
+      	}
+    }).catch(error => {
+      	alert(error.message);
+    })  
+}
+
+
+document.getElementById("modalConfigCookies").addEventListener  ('show.bs.modal', function (e) {
+    var n = localStorage.getItem("cookiesNecesariasWebMyContacts") || 1;
+    var f = localStorage.getItem("cookiesFuncionalesWebMyContacts") || 0;
+    necesarias.value  = n;
+    funcionales.value = f;
+    if (n == 0) { if (necesarias.checked)           { necesarias.checked  = false; } }
+    if (n == 1) { if (necesarias.checked == false)  { necesarias.checked  = true; } }  
+    if (f == 0) { if (funcionales.checked)          { funcionales.checked = false; } }
+    if (f == 1) { if (funcionales.checked == false) { funcionales.checked = true; } }
+})
+
+document.getElementById("ninguna").addEventListener  ('click',   (event) => { necesarias.checked = false;  funcionales.checked = false; })
+document.getElementById("todas").addEventListener    ('click',   (event) => { necesarias.checked = true;   funcionales.checked = true; }) 
+
+document.getElementById("guardar").addEventListener  ('click',   (event) => { 
+    localStorage.setItem("cookiesNecesariasWebMyContacts",  necesarias.checked ? 1 : 0);
+    localStorage.setItem("cookiesFuncionalesWebMyContacts", funcionales.checked ? 1 : 0);
+})
